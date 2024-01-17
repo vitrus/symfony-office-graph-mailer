@@ -1,0 +1,23 @@
+{
+    "name": "vitrus/symfony-office-graph-mailer",
+    "description": "Symfony Mailer Bridge for Microsoft Graph Api Client",
+    "type": "symfony-mailer-bridge",
+    "require": {
+        "php": "^8.0 || ^7.4",
+        "symfony/mailer": "^5.4|^6.0|^7.0",
+        "symfony/http-client": "^5.4|^6.0|^7.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vitrus\\SymfonyOfficeGraphMailer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sjoerd Adema",
+            "email": "vitrus@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
