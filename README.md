@@ -1,11 +1,11 @@
-# Symfony Mailer Transport for Microsoft Office365 Graph API
+# Symfony Mailer Transport for Microsoft Office 365 Graph API
 
 Provides integration between the `Symfony Mailer` and `Office365 Graph API`.
 
 - Tested on `Symony 6.4` and `php 8.1` should work with other setups as well
-  - Feel free to report issues with other setups
-- Does not require Microsoft Graph API Client (speaks to Graph API directly)
-- No Guzzle or PSR libraries needed, uses Symfony HTTP Client
+  - Feel free to report issues on github if you have them
+- Does not require the Microsoft Graph API Client (speaks to Graph API directly)
+- No Guzzle or other external libraries needed, uses only Symfony HTTP Client and Symfony Mailer
 
 ## Installation steps
 
@@ -14,22 +14,23 @@ Provides integration between the `Symfony Mailer` and `Office365 Graph API`.
 composer require vitrus/symfony-office-graph-mailer
 ```
 
-#### 2 configure mailer to use the `office-graph-api` scheme in `.env` (or `.env.local`)
+#### 2 Tag the transport factory in your `services.yaml`
+We might change this package to be a bundle so this is no longer needed in the future
+```yaml
+ Vitrus\SymfonyOfficeGraphMailer\Transport\GraphApiTransportFactory:
+    tags: ['mailer.transport_factory']
+```
+
+#### 3 configure mailer to use the `office-graph-api` scheme in `.env` (or `.env.local`)
 ```dotenv
 MAILER_DSN=office-graph-api://{CLIENT_ID}:{CLIENT_SECRET}/{TENANT}
 ```
 The tenant you use here should have permissions to send e-mail, and have access 
 to the user you will configure as `sender` in your e-mails!
 
-#### 3 Tag the transport factory in your `services.yaml`
-We might change this packages to be a bundle so this is no longer needed in the future
-```yaml
- Vitrus\Transport\GraphApiTransportFactory:
-    tags: ['mailer.transport_factory']
-```
 
 ## Feature: Store in sent items
-Messages are automatically stored in Office365 `Sent Items` folder, you can disable this with a custom header:
+Messages are automatically stored in Office 365 `Sent Items` folder, you can disable this with a custom header:
 
 ```php
 $message = (new Email())->subject($subject);
