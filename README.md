@@ -2,7 +2,7 @@
 
 Provides integration between the `Symfony Mailer` and `Office365 Graph API`.
 
-- Tested on `Symony 6.4` and `php 8.1` should work with other setups as well
+- Tested on `Symfony 6.4` and `php 8.1` should work with other setups as well
   - Feel free to report issues on github if you have them
 - Does not require the Microsoft Graph API Client (speaks to Graph API directly)
 - No Guzzle or other external libraries needed, uses only Symfony HTTP Client and Symfony Mailer
@@ -21,9 +21,9 @@ We might change this package to be a bundle so this is no longer needed in the f
     tags: ['mailer.transport_factory']
 ```
 
-#### 3 configure mailer to use the `office-graph-api` scheme in `.env` (or `.env.local`)
+#### 3 configure mailer to use the `microsoft-graph-api` scheme in `.env` (or `.env.local`)
 ```dotenv
-MAILER_DSN=office-graph-api://{CLIENT_ID}:{CLIENT_SECRET}/{TENANT}
+MAILER_DSN=microsoft-graph-api://{CLIENT_ID}:{CLIENT_SECRET}/{TENANT}
 ```
 The tenant you use here should have permissions to send e-mail, and have access 
 to the user you will configure as `sender` in your e-mails!
