@@ -21,9 +21,9 @@ We might change this package to be a bundle so this is no longer needed in the f
     tags: ['mailer.transport_factory']
 ```
 
-#### 3 configure mailer to use the `office-graph-api` scheme in `.env` (or `.env.local`)
+#### 3 configure mailer to use the `microsoft-graph-api` scheme in `.env` (or `.env.local`)
 ```dotenv
-MAILER_DSN=office-graph-api://{CLIENT_ID}:{CLIENT_SECRET}/{TENANT}
+MAILER_DSN=microsoft-graph-api://{CLIENT_ID}:{CLIENT_SECRET}/{TENANT}
 ```
 The tenant you use here should have permissions to send e-mail, and have access 
 to the user you will configure as `sender` in your e-mails!
