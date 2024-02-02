@@ -2,7 +2,7 @@
 
 Provides integration between the `Symfony Mailer` and `Office365 Graph API`.
 
-- Tested on `Symony 6.4` and `php 8.1` should work with other setups as well
+- Tested on `Symfony 6.4` and `php 8.1` should work with other setups as well
   - Feel free to report issues on github if you have them
 - Does not require the Microsoft Graph API Client (speaks to Graph API directly)
 - No Guzzle or other external libraries needed, uses only Symfony HTTP Client and Symfony Mailer
