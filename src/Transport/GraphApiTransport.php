@@ -20,16 +20,26 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 class GraphApiTransport extends AbstractApiTransport
 {
     private ?string $accessToken = null;
+    private string $graphTentantId;
+    private string $graphClientId;
+    private string $graphClientSecret;
+    private ?string $graphUserId;
 
     public function __construct(
-        private string $graphTentantId,
-        private string $graphClientId,
-        private string $graphClientSecret,
-        private ?string $graphUserId = null,
+        string $graphTentantId,
+        string $graphClientId,
+        string $graphClientSecret,
+        ?string $graphUserId = null,
         ?HttpClientInterface $client = null,
         ?EventDispatcherInterface $dispatcher = null,
         ?LoggerInterface $logger = null
     ) {
+        $this->graphTentantId = $graphTentantId;
+        $this->graphClientId = $graphClientId;
+        $this->graphClientSecret = $graphClientSecret;
+        $this->graphUserId = $graphUserId;
+
+
         parent::__construct($client, $dispatcher, $logger);
     }
 
