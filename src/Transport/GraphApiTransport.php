@@ -76,6 +76,7 @@ class GraphApiTransport extends AbstractApiTransport
                 'toRecipients' => $this->normalizeAddresses($envelope->getRecipients() ?? $email->getTo()),
                 'ccRecipients' => $this->normalizeAddresses($envelope->getRecipients() ? [] : $email->getCc()),
                 'bccRecipients' => $this->normalizeAddresses($envelope->getRecipients() ? [] : $email->getBcc()),
+                'replyTo' => $this->normalizeAddresses($email->getReplyTo()),
                 'body' => $this->normalizeBody($email),
                 'attachments' => $this->normalizeAttachments($email),
             ],
