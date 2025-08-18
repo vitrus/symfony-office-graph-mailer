@@ -22,7 +22,15 @@ class GraphApiTransportFactory extends AbstractTransportFactory implements Trans
             throw new UnsupportedSchemeException($dsn, 'Microsoft Office365 Graph API', $this->getSupportedSchemes());
         }
 
-        return new GraphApiTransport($dsn->getHost(), $dsn->getUser(), $dsn->getPassword(), $this->client, $this->dispatcher, $this->logger);
+        return new GraphApiTransport(
+            $dsn->getHost(),
+            $dsn->getUser(),
+            $dsn->getPassword(),
+            $dsn->getOption('userId'),
+            $this->client,
+            $this->dispatcher,
+            $this->logger,
+        );
     }
 
     protected function getSupportedSchemes(): array

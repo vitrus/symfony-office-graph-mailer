@@ -19,22 +19,26 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
  */
 class GraphApiTransport extends AbstractApiTransport
 {
+    private ?string $accessToken = null;
     private string $graphTentantId;
     private string $graphClientId;
     private string $graphClientSecret;
-    private ?string $accessToken = null;
+    private ?string $graphUserId;
 
     public function __construct(
         string $graphTentantId,
         string $graphClientId,
         string $graphClientSecret,
-        HttpClientInterface $client = null,
-        EventDispatcherInterface $dispatcher = null,
-        LoggerInterface $logger = null
+        ?string $graphUserId = null,
+        ?HttpClientInterface $client = null,
+        ?EventDispatcherInterface $dispatcher = null,
+        ?LoggerInterface $logger = null
     ) {
         $this->graphTentantId = $graphTentantId;
         $this->graphClientId = $graphClientId;
         $this->graphClientSecret = $graphClientSecret;
+        $this->graphUserId = $graphUserId;
+
 
         parent::__construct($client, $dispatcher, $logger);
     }
@@ -184,8 +188,8 @@ class GraphApiTransport extends AbstractApiTransport
 
     private function getEndpoint(SentMessage $sentMessage): string
     {
-        $senderAddress = $sentMessage->getEnvelope()->getSender()->getAddress();
+        $user = $this->graphUserId ??  $sentMessage->getEnvelope()->getSender()->getAddress();
 
-        return sprintf('https://graph.microsoft.com/v1.0/users/%s/sendMail', $senderAddress);
+        return sprintf('https://graph.microsoft.com/v1.0/users/%s/sendMail', $user);
     }
 }
