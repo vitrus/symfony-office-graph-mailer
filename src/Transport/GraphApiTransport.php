@@ -28,9 +28,9 @@ class GraphApiTransport extends AbstractApiTransport
         string $graphTentantId,
         string $graphClientId,
         string $graphClientSecret,
-        HttpClientInterface $client = null,
-        EventDispatcherInterface $dispatcher = null,
-        LoggerInterface $logger = null
+        ?HttpClientInterface $client = null,
+        ?EventDispatcherInterface $dispatcher = null,
+        ?LoggerInterface $logger = null
     ) {
         $this->graphTentantId = $graphTentantId;
         $this->graphClientId = $graphClientId;
