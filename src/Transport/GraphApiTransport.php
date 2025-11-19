@@ -141,12 +141,17 @@ class GraphApiTransport extends AbstractApiTransport
             $headers = $attachment->getPreparedHeaders();
             $filename = $headers->getHeaderParameter('Content-Disposition', 'filename');
 
-            $attachments[] = [
+            $normalizedAttachment = [
                 '@odata.type' => '#microsoft.graph.fileAttachment',
                 'contentType' => $headers->get('Content-Type')->getBody(),
                 'contentBytes' => base64_encode($attachment->getBody()),
                 'name' => $filename,
             ];
+            if ($attachment->getDisposition() === 'inline') {
+                $normalizedAttachment['isInline'] = true;
+                $normalizedAttachment['contentId'] = $attachment->getName();
+            }
+            $attachments[] = $normalizedAttachment;
         }
 
         return $attachments;
