@@ -4,8 +4,8 @@
     "type": "symfony-mailer-bridge",
     "require": {
         "php": "^8.0 || ^7.4",
-        "symfony/mailer": "^5.4|^6.0|^7.0",
-        "symfony/http-client": "^5.4|^6.0|^7.0"
+        "symfony/mailer": "^6.0|^7.0|^8.0",
+        "symfony/http-client": "^6.0|^7.0|^8.0"
     },
     "license": "MIT",
     "autoload": {
